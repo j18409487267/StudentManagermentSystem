@@ -1,4 +1,4 @@
-from student_managerment_system.student_manager_system import  StudentManagermentSystem
+from student_manager_system import  StudentManagermentSystem
 
 
 
