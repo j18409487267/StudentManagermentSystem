@@ -1,5 +1,7 @@
 import os
 
+from database_option import ConnectDatabase
+
 filename = 'stu_text'     #将存储学生信息的文件申明为一个变量，方便在别的地方调用
 class StudentManagermentSystem:
     def __init__(self):
@@ -103,6 +105,7 @@ class StudentManagermentSystem:
                     break
              #将学生信息保存到文件中
             StudentManagermentSystem().save(self.all_studets)
+            ConnectDatabase().insert_datas()
             print('学生信息录入完毕！')
             StudentManagermentSystem().show_all_student()
     def save(self,list):
