@@ -42,7 +42,7 @@ class StudentManagermentSystem:
         else:
             #定义学生信息标题
             format_text = '{}\t\t\t{}\t\t\t{}\t\t\t{}\t'
-            print(format_text.format('学号', '姓名', '数学成绩', '语文成绩'))
+            print(format_text.format('学 号', '姓 名', '数学成绩', '语文成绩'))
             print('*' * 50)
             for i in lst:
 
@@ -68,7 +68,7 @@ class StudentManagermentSystem:
         for i in old_info:
             student_dict = dict(eval(i))
             new_student.append(student_dict)
-            StudentManagermentSystem().show_student(new_student)
+        StudentManagermentSystem().show_student(new_student)
     def add_students(self):
             '''
             添加学生信息
@@ -121,7 +121,7 @@ class StudentManagermentSystem:
             修改学生信息
             :return:
             '''
-            StudentManagermentSystem().show_all_student()
+            ConnectDatabase().query_datas()
             if os.path.exists(filename):   #判断文件是否存在
                 with open(filename, 'r', encoding='utf-8') as f:
                     old_stu_info = f.readlines()
@@ -161,6 +161,7 @@ class StudentManagermentSystem:
             awser = input('是否继续修改？y/n\n')
             if awser == 'y' or awser == 'Y':
                 StudentManagermentSystem().update_students() #再次修改
+            ConnectDatabase().insert_datas()
     def delete_students(self):
             '''
             删除学生信息
@@ -251,4 +252,13 @@ class StudentManagermentSystem:
         StudentManagermentSystem().show_student(new_student)  #排序结束后展示学生信息
 
 
-
+    def truc_files(self):
+        '''
+        清空文件
+        :return:
+        '''
+        if os.path.exists(filename):
+            with open(filename,'w',encoding='utf-8')  as file:
+                file.truncate()
+        else:
+            return
