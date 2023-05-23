@@ -23,8 +23,8 @@ def insert_datas():
                if len(new_stu_number) > 0:
                    query_number = list(new_stu_number)[0]  #将查到的学生信息转为列表，取列表中的元素
 
-                   for i in query_number:  #遍历列表，将获取到的学号与文件中的学号作比较，不存在的插入，存在的更新
-                       if i == stu_list.get("学号"):
+                   for stu_num in query_number:  #遍历列表，将获取到的学号与文件中的学号作比较，不存在的插入，存在的更新
+                       if stu_num == stu_list.get("学号"):
                            sql_update = f"update STUDENTMANAGERINFO  set " \
                                         f"STUDENT_NAME='{stu_list.get('姓名')}'," \
                                         f"MATH_SCORE= '{stu_list.get('数学成绩')}'," \
@@ -105,17 +105,6 @@ class ConnectDatabase:
             password='jhs@123jhs',
             autocommit=True
         )
-        # sql = "create table STUDENTMANAGERINFO (" \
-        #                       'STUDENT_NUMBER VARCHAR(120)  NOT NULL,' \
-        #                       'STUDENT_NAME VARCHAR(120) DEFAULT  NULL,' \
-        #                       'MATH_SCORE VARCHAR(120) DEFAULT NULL,' \
-        #                       'CHINESE_SCORE VARCHAR(120) DEFAULT NULL,' \
-        #                       'PRIMARY KEY (STUDENT_NUMBER)' \
-        #                       ") ENGINE=MYISAM DEFAULT CHARSET=utf8;"
-        #
-        # cur = coon.cursor()
-        # cur.execute(sql)
-        # coon.close()
         return coon
     def insert_datas(self):
         coon = ConnectDatabase()  #实例化类对象，调用类下的connect_database()方法
@@ -133,8 +122,8 @@ class ConnectDatabase:
                    if len(new_stu_number) > 0:
                        query_number = list(new_stu_number)[0]  #将查到的学生信息转为列表，取列表中的元素
 
-                       for i in query_number:  #遍历列表，将获取到的学号与文件中的学号作比较，不存在的插入，存在的更新
-                           if i == stu_list.get("学号"):
+                       for stu_num in query_number:  #遍历列表，将获取到的学号与文件中的学号作比较，不存在的插入，存在的更新
+                           if stu_num == stu_list.get("学号"):
                                sql_update = f"update STUDENTMANAGERINFO  set " \
                                             f"STUDENT_NAME='{stu_list.get('姓名')}'," \
                                             f"MATH_SCORE= '{stu_list.get('数学成绩')}'," \
@@ -201,4 +190,4 @@ class ConnectDatabase:
 
 if __name__ == '__main__':
     # ConnectDatabase().connect_database()
-    query_datas()
+    ConnectDatabase().query_datas()
