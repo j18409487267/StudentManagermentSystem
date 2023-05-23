@@ -1,6 +1,6 @@
 import os
 
-from database_option import insert_datas, query_datas
+from database_option import ConnectDatabase
 
 filename = 'stu_text'     #将存储学生信息的文件申明为一个变量，方便在别的地方调用
 class StudentManagermentSystem:
@@ -121,7 +121,7 @@ class StudentManagermentSystem:
             修改学生信息
             :return:
             '''
-            query_datas()
+            ConnectDatabase().query_datas()
             if os.path.exists(filename):   #判断文件是否存在
                 with open(filename, 'r', encoding='utf-8') as f:
                     old_stu_info = f.readlines()
@@ -161,7 +161,7 @@ class StudentManagermentSystem:
             awser = input('是否继续修改？y/n\n')
             if awser == 'y' or awser == 'Y':
                 StudentManagermentSystem().update_students() #再次修改
-            insert_datas()
+            ConnectDatabase().insert_datas()
     def delete_students(self):
             '''
             删除学生信息
